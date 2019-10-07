@@ -9,12 +9,19 @@ data.forEach((UFOsightings) => {
 });
 
 var sightings = data;
-var button = d3.select("#button");
+var button = d3.select("#filter-btn");
 
 button.on("click", function() {
   var inputElement = d3.select("#datetime");
   var inputValue = inputElement.property("value");
   var filteredData = sightings.filter(sighting => sighting.datetime === inputValue);
-  console.log(filteredData);
+
+  filteredData.forEach((filteredSightings) => {
+    var row2 = tbody.append("tr");
+    Object.entries(filteredSightings).forEach(([key2, value2]) => {
+      var cell2 = row2.append("td");
+      cell2.text(value2);
+    })
+  });
 })
 
